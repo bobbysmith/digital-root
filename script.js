@@ -26,6 +26,8 @@ document.addEventListener('keypress', function(e){
     rootNum.innerHTML = '';
     if (isNaN(parseInt(num.value)) || num.value < 0 || num.value % 1 !== 0) {
       error.innerHTML = 'Enter a positive integer.';
+    } else if(num.value.length >= 21) {
+      error.innerHTML = 'Sorry, your number is larger than allowed.';
     } else {
       digitalRoot(parseInt(num.value));
       rootNum.innerHTML = '<p style="font-size: 2rem;">The digital root of ' + num.value + ' is:</p>' + '<p>' + digit + '</p>';
@@ -39,6 +41,8 @@ button.addEventListener('click', function(e){
   rootNum.innerHTML = '';
   if (isNaN(parseInt(num.value)) || num.value < 0 || num.value % 1 !== 0) {
     error.innerHTML = 'Enter a positive integer.';
+  } else if(num.value.length >= 21) {
+      error.innerHTML = 'Sorry, your number is larger than allowed.';
   } else {
     digitalRoot(parseInt(num.value));
     rootNum.innerHTML = '<p style="font-size: 2rem;">The digital root of ' + num.value + ' is:</p>' + '<p>' + digit + '</p>';
