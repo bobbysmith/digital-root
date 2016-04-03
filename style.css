@@ -9,10 +9,13 @@ html, body {
 
 header {
   width: 100%;
-  background: black;
-  color: white;
+  background: #fff;
+  color: #05AFFA;
+  border-bottom: 1px solid #05AFFA;
+  box-shadow: 0 2px 2px -2px #2D2D2D;
   font-family: helvetica, sans-serif;
-  font-weight: lighter;
+  font-weight: bold;
+  font-family: 'Orbitron';
   font-size: 1.4rem;
   display: flex;
   align-items: center;
@@ -28,12 +31,12 @@ header {
   margin: 0 auto;
   font-family: helvetica, sans-serif;
   font-weight: lighter;
-  /* font-family: 'Orbitron'; */
 }
 
 .about {
   font-size: 1.4rem;
   width: 60%;
+  color: #2d2d2d;
 }
 
 .input {
@@ -43,24 +46,23 @@ header {
 
 input[type="text"] {
   font-size: 1rem;
-  /* font-family: 'Orbitron'; */
+  color: #2d2d2d;
 }
 
 button {
   font-size: 1rem;
-  background: #000;
+  background: #05AFFA;
   color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #05AFFA;
   margin-left: 1em;
   outline: none;
   padding: .5em;
-  /* font-family: 'Orbitron'; */
 }
 
 button:hover {
   background: #fff;
-  color: #000;
-  border: 1px solid #000;
+  color: #05AFFA;
+  border: 1px solid #05AFFA;
   cursor: pointer;
 }
 
@@ -68,9 +70,10 @@ button:hover {
   font-size: 3rem;
   margin-top: 1em;
   text-align: center;
+  color: #2d2d2d;
 }
 
 .error {
   font-size: 2rem;
-  color: red;
+  color: #E31017;
 }
