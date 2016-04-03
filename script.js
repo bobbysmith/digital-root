@@ -10,10 +10,11 @@ function digitalRoot(n){
   digit = 0;
 
   for (var i = 0; i < digitArray.length; i++) {
+    console.log(digitArray);
     digit += parseInt(digitArray[i]);
   };
 
-  while (digit > 10) {
+  while (digit > 9) {
     digitalRoot(digit);
   }
 
