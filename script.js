@@ -1,15 +1,18 @@
-var rootNum = document.querySelector('.root'),
-num = document.querySelector('.num'),
-button = document.querySelector('button'),
-error = document.querySelector('.error'),
-digit;
+const rootNum = document.querySelector('.root');
+const rootText = document.querySelector('.root-text');
+const num = document.querySelector('.num');
+const button = document.querySelector('button');
+const error = document.querySelector('.error');
+const valueContainer = document.querySelector('#value');
+const digitalRootContainer = document.querySelector('#digital-root');
+let digit;
+const RETURN_CHAR_CODE = 13;
 
-
-function digitalRoot(n){
-  var digitArray = n.toString().split('');
+function digitalRoot(n) {
   digit = 0;
+  const digitArray = [...n.toString()];
 
-  for (var i = 0; i < digitArray.length; i++) {
+  for (let i = 0; i < digitArray.length; i++) {
     digit += parseInt(digitArray[i]);
   };
 
@@ -20,31 +23,40 @@ function digitalRoot(n){
   return digit;
 }
 
-document.addEventListener('keypress', function(e){
-  if(e.charCode === 13) {
-    error.innerHTML = '';
-    rootNum.innerHTML = '';
-    if (isNaN(parseInt(num.value)) || num.value < 0 || num.value % 1 !== 0) {
-      error.innerHTML = 'Enter a positive integer.';
-    } else if(num.value.length >= 21) {
-      error.innerHTML = 'Sorry, your number is larger than allowed.';
-    } else {
-      digitalRoot(parseInt(num.value));
-      rootNum.innerHTML = '<p style="font-size: 2rem;">The digital root of ' + num.value + ' is:</p>' + '<p>' + digit + '</p>';
-    }
+function clear() {
+  if (error.textContent) {
+    error.textContent = '';
   }
-});
 
+  if (!rootText.classList.contains('hidden')) {
+    rootText.classList.add('hidden');
+  }
+}
 
-button.addEventListener('click', function(e){
-  error.innerHTML = '';
-  rootNum.innerHTML = '';
-  if (isNaN(parseInt(num.value)) || num.value < 0 || num.value % 1 !== 0) {
-    error.innerHTML = 'Enter a positive integer.';
-  } else if(num.value.length >= 21) {
-      error.innerHTML = 'Sorry, your number is larger than allowed.';
+function isInputInvalid(n) {
+  return isNaN(parseInt(n)) || n < 0 || n % 1 !== 0;
+}
+
+function handleEvent() {
+  clear();
+
+  const { value } = num;
+
+  if (isInputInvalid(value)) {
+    error.textContent = 'Enter a positive integer.';
+  } else if (value.length >= 21) {
+    error.textContent = 'Sorry, your number is larger than allowed.';
   } else {
-    digitalRoot(parseInt(num.value));
-    rootNum.innerHTML = '<p style="font-size: 2rem;">The digital root of ' + num.value + ' is:</p>' + '<p>' + digit + '</p>';
+    rootText.classList.remove('hidden');
+    valueContainer.textContent = value;
+    digitalRootContainer.textContent = digitalRoot(parseInt(value));
   }
+
+  num.value = '';
+}
+
+document.addEventListener('keypress', (e) => {
+  if (e.charCode === RETURN_CHAR_CODE) handleEvent();
 });
+
+button.addEventListener('click', handleEvent);
